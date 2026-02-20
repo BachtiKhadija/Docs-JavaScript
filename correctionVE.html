@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculateur Énergétique du Repas</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h3 class="text-center mb-4">Calculateur de Valeur Énergétique</h3>
+
+        <form id="mealForm">
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label>Viande (g)</label>
+                    <input type="number" class="form-control" id="viande" min="0" value="0">
+                </div>
+                <div class="col">
+                    <label>Pain (g)</label>
+                    <input type="number" class="form-control" id="pain" min="0" value="0">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label>Légumes (g)</label>
+                    <input type="number" class="form-control" id="legume" min="0" value="0">
+                </div>
+                <div class="col">
+                    <label>Fruits (g)</label>
+                    <input type="number" class="form-control" id="fruit" min="0" value="0">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label>Yaourt (g)</label>
+                <input type="number" class="form-control" id="yaourt" min="0" value="0">
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" id="btnC">Calculer</button>
+            </div>
+        </form>
+
+        <div class="mt-4 text-center">
+            <div id="resultat" class="result-box text-success"></div>
+            <div id="interpretation" class="mt-2"></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.querySelector('#btnC').addEventListener('click',function(){
+
+    const kcalViande = 250;
+    const kcalPain = 265;
+    const kcalLegume = 50;
+    const kcalFruit = 60;
+    const kcalYaourt = 80;
+
+    // Récupération des quantités
+    let viande = parseFloat(document.getElementById("viande").value);
+    let pain = parseFloat(document.getElementById("pain").value);
+    let legume = parseFloat(document.getElementById("legume").value);
+    let fruit = parseFloat(document.getElementById("fruit").value);
+    let yaourt = parseFloat(document.getElementById("yaourt").value);
+
+    let total =(viande * kcalViande / 100) +(pain * kcalPain / 100) +(legume * kcalLegume / 100) +
+        (fruit * kcalFruit / 100) +(yaourt * kcalYaourt / 100);
+    total = total.toFixed(2);
+
+    document.querySelector("#resultat").innerHTML ="Valeur énergétique totale : " + total + " kcal";
+
+    // Interprétation
+    let interpretation = "";
+    if (total < 500) {
+        interpretation = "Repas léger";
+    } else if (total >= 500 && total <= 800) {
+        interpretation = "Repas équilibré ";
+    } else {
+        interpretation = "Repas riche en calories";
+    }
+
+    document.querySelector("#interpretation").innerHTML = interpretation;
+});
+</script>
+
+</body>
+</html>
