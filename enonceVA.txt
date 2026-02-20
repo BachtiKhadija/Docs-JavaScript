@@ -1,0 +1,12 @@
+# Calculer la valeur energitique d'un repas
+#les ve par aliment et par 100g
+   const kcalViande = 250;
+    const kcalPain = 265;
+    const kcalLegume = 50;
+    const kcalFruit = 60;
+    const kcalYaourt = 80;
+
+# intreprétations :
+   # total ve < 500 => repas léger
+   #entre 500 et 800 => repas équilibré
+   #au dela de 800  => repas riche en calories
